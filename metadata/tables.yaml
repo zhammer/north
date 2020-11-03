@@ -1,0 +1,29 @@
+- table:
+    schema: public
+    name: haiku_versions
+- table:
+    schema: public
+    name: haikus
+  object_relationships:
+  - name: created_by
+    using:
+      foreign_key_constraint_on: created_by_id
+  array_relationships:
+  - name: haiku_versions
+    using:
+      foreign_key_constraint_on:
+        column: haiku_id
+        table:
+          schema: public
+          name: haiku_versions
+- table:
+    schema: public
+    name: users
+  array_relationships:
+  - name: haikus
+    using:
+      foreign_key_constraint_on:
+        column: created_by_id
+        table:
+          schema: public
+          name: haikus
