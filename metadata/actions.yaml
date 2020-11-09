@@ -1,6 +1,17 @@
-actions: []
+actions:
+- name: LogIn
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_LOG_IN}}'
+- name: SignUp
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_SIGN_UP}}'
 custom_types:
   enums: []
-  input_objects: []
-  objects: []
+  input_objects:
+  - name: SignUpInput
+  - name: LogInInput
+  objects:
+  - name: AuthOutput
   scalars: []

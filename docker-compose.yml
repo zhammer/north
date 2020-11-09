@@ -29,6 +29,24 @@ services:
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: "startup, http-log, webhook-log, websocket-log, query-log"
       HASURA_GRAPHQL_ADMIN_SECRET: admin
+      HASURA_GRAPHQL_AUTH_HOOK: "http://north:3000/v1/auth_hook"
+
+      ACTION_LOG_IN: "http://north:3000/v1/actions/auth/login"
+      ACTION_SIGN_UP: "http://north:3000/v1/actions/auth/signup"
+
+  north:
+    build:
+      context: .
+      dockerfile: air.Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      # we don't want to mount air tmp directory into our local environment
+      - /app/tmp/
+    working_dir: /app
+    command: air -c .air.toml
+    env_file: .env
 
 volumes:
   postgres_data:

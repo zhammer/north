@@ -1,13 +1,24 @@
 - table:
     schema: public
     name: haiku_versions
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - haiku_id
+      - line1
+      - line2
+      - line3
+      - version_number
+      - created_at
+      filter: {}
 - table:
     schema: public
     name: haikus
   object_relationships:
-  - name: created_by
+  - name: post
     using:
-      foreign_key_constraint_on: created_by_id
+      foreign_key_constraint_on: post_id
   array_relationships:
   - name: haiku_versions
     using:
@@ -16,14 +27,97 @@
         table:
           schema: public
           name: haiku_versions
+  insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+      - line1
+      - line2
+      - line3
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - post_id
+      - line1
+      - line2
+      - line3
+      - created_at
+      - updated_at
+      filter: {}
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - line1
+      - line2
+      - line3
+      filter:
+        post:
+          created_by_id:
+            _eq: x-hasura-user-id
+      check: {}
+- table:
+    schema: public
+    name: posts
+  object_relationships:
+  - name: created_by
+    using:
+      foreign_key_constraint_on: created_by_id
+  array_relationships:
+  - name: haikus
+    using:
+      foreign_key_constraint_on:
+        column: post_id
+        table:
+          schema: public
+          name: haikus
+  insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        created_by_id: x-hasura-User-Id
+      columns:
+      - description
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - created_by_id
+      - id
+      - description
+      - created_at
+      - updated_at
+      filter: {}
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - description
+      filter:
+        created_by_id:
+          _eq: x-hasura-user-id
+      check: null
 - table:
     schema: public
     name: users
   array_relationships:
-  - name: haikus
+  - name: posts
     using:
       foreign_key_constraint_on:
         column: created_by_id
         table:
           schema: public
-          name: haikus
+          name: posts
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - username
+      filter: {}

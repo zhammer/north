@@ -3,11 +3,11 @@ CREATE TABLE "public"."haikus"(
     "line1" text NOT NULL,
     "line2" text NOT NULL,
     "line3" text NOT NULL,
-    "created_by_id" integer NOT NULL,
+    "post_id" integer NOT NULL,
     "created_at" timestamptz NOT NULL DEFAULT now(),
     "updated_at" timestamptz NOT NULL DEFAULT now(),
     PRIMARY KEY ("id"),
-    FOREIGN KEY ("created_by_id") REFERENCES "public"."users"("id")
+    FOREIGN KEY ("post_id") REFERENCES "public"."posts"("id")
 );
 
 CREATE TRIGGER "set_public_haikus_updated_at"
