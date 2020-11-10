@@ -31,8 +31,8 @@ services:
       HASURA_GRAPHQL_ADMIN_SECRET: admin
       HASURA_GRAPHQL_AUTH_HOOK: "http://north:3000/v1/auth_hook"
 
-      ACTION_LOG_IN: "http://north:3000/v1/actions/auth/login"
-      ACTION_SIGN_UP: "http://north:3000/v1/actions/auth/signup"
+      ACTION_SIGN_IN: "http://north:3000/v1/actions/auth/sign_in"
+      ACTION_CREATE_ACCOUNT: "http://north:3000/v1/actions/auth/create_account"
 
   north:
     build:

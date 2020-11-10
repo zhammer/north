@@ -1,25 +1,25 @@
 type Mutation {
-  LogIn (
-    inp: LogInInput!
-  ): AuthOutput!
-}
-
-
-type Mutation {
-  SignUp (
-    inp: SignUpInput!
+  CreateAccount (
+    inp: CreateAccountInput!
   ): AuthOutput
 }
 
 
+type Mutation {
+  SignIn (
+    inp: SignInInput!
+  ): AuthOutput!
+}
 
 
-input SignUpInput {
+
+
+input SignInInput {
   username : String!
   password : String!
 }
 
-input LogInInput {
+input CreateAccountInput {
   username : String!
   password : String!
 }

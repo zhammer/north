@@ -9,14 +9,14 @@ type GraphQLError struct {
 	Message string `json:"message"`
 }
 
-type SignUpInput struct {
+type CreateAccountInput struct {
 	Inp struct {
 		Username string `json:"username"`
 		Password string `json:"password"`
 	} `json:"inp"`
 }
 
-type LogInInput struct {
+type SignInInput struct {
 	Inp struct {
 		Username string `json:"username"`
 		Password string `json:"password"`

@@ -56,9 +56,9 @@ func makeServer(cfg Config) (http.Handler, error) {
 
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/v1/actions/auth/login", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v1/actions/auth/sign_in", func(w http.ResponseWriter, r *http.Request) {
 		data := ActionPayload{}
-		input := LogInInput{}
+		input := SignInInput{}
 		data.Input = &input
 
 		if err := json.NewDecoder(r.Body).Decode(&data); err != nil {
@@ -66,7 +66,7 @@ func makeServer(cfg Config) (http.Handler, error) {
 			return
 		}
 
-		user, err := n.LogIn(r.Context(), input.Inp.Username, input.Inp.Password)
+		user, err := n.SignIn(r.Context(), input.Inp.Username, input.Inp.Password)
 		if err != nil {
 			writeGqlError(w, err)
 			return
@@ -83,9 +83,9 @@ func makeServer(cfg Config) (http.Handler, error) {
 		w.Write(body)
 	})
 
-	mux.HandleFunc("/v1/actions/auth/signup", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v1/actions/auth/create_account", func(w http.ResponseWriter, r *http.Request) {
 		data := ActionPayload{}
-		input := SignUpInput{}
+		input := CreateAccountInput{}
 		data.Input = &input
 
 		if err := json.NewDecoder(r.Body).Decode(&data); err != nil {
@@ -93,7 +93,7 @@ func makeServer(cfg Config) (http.Handler, error) {
 			return
 		}
 
-		user, err := n.SignUp(r.Context(), input.Inp.Username, input.Inp.Password)
+		user, err := n.CreateAccount(r.Context(), input.Inp.Username, input.Inp.Password)
 		if err != nil {
 			writeGqlError(w, err)
 			return

@@ -12,7 +12,7 @@ type North struct {
 	db *pg.DB
 }
 
-func (n *North) LogIn(ctx context.Context, username string, password string) (*User, error) {
+func (n *North) SignIn(ctx context.Context, username string, password string) (*User, error) {
 	user := User{}
 	_, err := n.db.QueryOne(&user, `
 		SELECT id, username FROM users WHERE username = ? AND password = crypt(?, password);
@@ -24,7 +24,7 @@ func (n *North) LogIn(ctx context.Context, username string, password string) (*U
 	return &user, nil
 }
 
-func (n *North) SignUp(ctx context.Context, username string, password string) (*User, error) {
+func (n *North) CreateAccount(ctx context.Context, username string, password string) (*User, error) {
 	if err := validPassword(password); err != nil {
 		return nil, err
 	}

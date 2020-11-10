@@ -1,17 +1,17 @@
 actions:
-- name: LogIn
+- name: CreateAccount
   definition:
     kind: synchronous
-    handler: '{{ACTION_LOG_IN}}'
-- name: SignUp
+    handler: '{{ACTION_CREATE_ACCOUNT}}'
+- name: SignIn
   definition:
     kind: synchronous
-    handler: '{{ACTION_SIGN_UP}}'
+    handler: '{{ACTION_SIGN_IN}}'
 custom_types:
   enums: []
   input_objects:
-  - name: SignUpInput
-  - name: LogInInput
+  - name: SignInInput
+  - name: CreateAccountInput
   objects:
   - name: AuthOutput
   scalars: []
