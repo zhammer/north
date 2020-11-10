@@ -20,26 +20,30 @@ class _SignInPageState extends State<SignInPage> {
       child: Center(
         child: Container(
           padding: EdgeInsets.all(50),
-          child: Column(
-            children: <Widget>[
-              CupertinoTextField(
-                controller: _usernameController,
-                autocorrect: false,
-                placeholder: 'username',
-              ),
-              CupertinoTextField(
-                controller: _passwordController,
-                autocorrect: false,
-                placeholder: 'password',
-                obscureText: true,
-              ),
-              SizedBox(height: 20),
-              CupertinoButton.filled(
-                child: Text('sign in'),
-                onPressed: _handleSubmitted,
-              )
-            ],
-            mainAxisSize: MainAxisSize.min,
+          child: AutofillGroup(
+            child: Column(
+              children: <Widget>[
+                CupertinoTextField(
+                  controller: _usernameController,
+                  autocorrect: false,
+                  placeholder: 'username',
+                  autofillHints: [AutofillHints.username],
+                ),
+                CupertinoTextField(
+                  controller: _passwordController,
+                  autocorrect: false,
+                  placeholder: 'password',
+                  obscureText: true,
+                  autofillHints: [AutofillHints.password],
+                ),
+                SizedBox(height: 20),
+                CupertinoButton.filled(
+                  child: Text('sign in'),
+                  onPressed: _handleSubmitted,
+                )
+              ],
+              mainAxisSize: MainAxisSize.min,
+            ),
           ),
         ),
       ),

@@ -22,32 +22,37 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       child: Center(
         child: Container(
           padding: EdgeInsets.all(50),
-          child: Column(
-            children: <Widget>[
-              CupertinoTextField(
-                controller: _usernameController,
-                autocorrect: false,
-                placeholder: 'username',
-              ),
-              CupertinoTextField(
-                controller: _passwordController,
-                autocorrect: false,
-                placeholder: 'password',
-                obscureText: true,
-              ),
-              CupertinoTextField(
-                controller: _confirmPasswordController,
-                autocorrect: false,
-                placeholder: 'confirm password',
-                obscureText: true,
-              ),
-              SizedBox(height: 20),
-              CupertinoButton.filled(
-                child: Text('create account'),
-                onPressed: _handleSubmitted,
-              )
-            ],
-            mainAxisSize: MainAxisSize.min,
+          child: AutofillGroup(
+            child: Column(
+              children: <Widget>[
+                CupertinoTextField(
+                  controller: _usernameController,
+                  autocorrect: false,
+                  placeholder: 'username',
+                  autofillHints: [AutofillHints.newUsername],
+                ),
+                CupertinoTextField(
+                  controller: _passwordController,
+                  autocorrect: false,
+                  placeholder: 'password',
+                  obscureText: true,
+                  autofillHints: [AutofillHints.newPassword],
+                ),
+                CupertinoTextField(
+                  controller: _confirmPasswordController,
+                  autocorrect: false,
+                  placeholder: 'confirm password',
+                  obscureText: true,
+                  autofillHints: [AutofillHints.newPassword],
+                ),
+                SizedBox(height: 20),
+                CupertinoButton.filled(
+                  child: Text('create account'),
+                  onPressed: _handleSubmitted,
+                )
+              ],
+              mainAxisSize: MainAxisSize.min,
+            ),
           ),
         ),
       ),
