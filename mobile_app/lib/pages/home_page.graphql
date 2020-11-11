@@ -1,0 +1,15 @@
+query HomePage {
+  posts(limit: 10) {
+    haikus {
+      line1
+      line2
+      line3
+      id
+    }
+    created_at
+    created_by {
+      username
+      id
+    }
+  }
+}

@@ -3,9 +3,7 @@ import 'package:north/pages/create_account_page.dart';
 import 'package:north/pages/sign_in_page.dart';
 
 class LandingPage extends StatelessWidget {
-  LandingPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  LandingPage({Key key}) : super(key: key);
 
   void _handleCreateAccountClicked(BuildContext context) {
     Navigator.of(context).push(CupertinoPageRoute(builder: (context) {

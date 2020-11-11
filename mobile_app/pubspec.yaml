@@ -26,6 +26,7 @@ dependencies:
   graphql: ^4.0.0-beta.5
   graphql_flutter: ^4.0.0-beta.5
   provider: ^4.3.2
+  flutter_secure_storage: ^3.3.5
 
 
   # The following adds the Cupertino Icons font to your application.

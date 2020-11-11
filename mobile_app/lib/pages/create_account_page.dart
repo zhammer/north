@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:graphql/client.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:north/auth.dart';
 import 'package:north/graphql/generated.graphql.dart';
+import 'package:provider/provider.dart';
 
 class CreateAccountPage extends StatefulWidget {
   @override
@@ -16,6 +18,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
 
   void _handleSubmitted(BuildContext context) async {
     final client = GraphQLProvider.of(context).value;
+    final auth = Provider.of<Auth>(context, listen: false);
     final mutation = CreateAccountMutation(
       variables: CreateAccountArguments(
         username: _usernameController.text,
@@ -33,7 +36,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     }
 
     final data = CreateAccount$MutationRoot.fromJson(result.data);
-    debugPrint(data.createAccount.accessToken);
+    await auth.setToken(data.createAccount.accessToken);
   }
 
   @override
