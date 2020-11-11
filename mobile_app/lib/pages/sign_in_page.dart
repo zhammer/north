@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:graphql/client.dart';
+import 'package:north/graphql/client.dart';
+import 'package:north/graphql/generated.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -9,13 +12,34 @@ class _SignInPageState extends State<SignInPage> {
   TextEditingController _usernameController = TextEditingController(text: '');
   TextEditingController _passwordController = TextEditingController(text: '');
 
-  void _handleSubmitted() {}
+  void _handleSubmitted() async {
+    final mutation = SignInMutation(
+      variables: SignInArguments(
+        password: _passwordController.text,
+        username: _usernameController.text,
+      ),
+    );
+    final result = await client.mutate(
+      MutationOptions(
+        document: mutation.document,
+        variables: mutation.getVariablesMap(),
+      ),
+    );
+
+    if (result.hasException) {
+      debugPrint(result.exception.toString());
+      return;
+    }
+
+    final data = SignIn$MutationRoot.fromJson(result.data);
+    debugPrint(data.signIn.accessToken);
+  }
 
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: Text('log in'),
+        middle: Text('sign in'),
       ),
       child: Center(
         child: Container(

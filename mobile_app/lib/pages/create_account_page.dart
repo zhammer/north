@@ -21,11 +21,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         password: _passwordController.text,
       ),
     );
-    final MutationOptions options = MutationOptions(
+    final result = await client.mutate(MutationOptions(
       document: mutation.document,
       variables: mutation.getVariablesMap(),
-    );
-    final result = await client.mutate(options);
+    ));
 
     if (result.hasException) {
       debugPrint(result.exception.toString());
