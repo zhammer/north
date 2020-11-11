@@ -3,10 +3,14 @@ actions:
   definition:
     kind: synchronous
     handler: '{{ACTION_CREATE_ACCOUNT}}'
+  permissions:
+  - role: unauthorized
 - name: SignIn
   definition:
     kind: synchronous
     handler: '{{ACTION_SIGN_IN}}'
+  permissions:
+  - role: unauthorized
 custom_types:
   enums: []
   input_objects:

@@ -1,5 +1,5 @@
-query HomePage {
-  posts(limit: 10) {
+query AuthedPages {
+  feed:posts(limit: 10) {
     haikus {
       line1
       line2
@@ -11,5 +11,9 @@ query HomePage {
       username
       id
     }
+  }
+
+  me {
+    username
   }
 }

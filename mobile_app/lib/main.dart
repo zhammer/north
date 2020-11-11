@@ -10,7 +10,10 @@ void main() {
   runApp(App());
 }
 
-const _leaf0 = Color.fromRGBO(200, 47, 49, 1);
+const leaf0 = Color.fromRGBO(200, 47, 49, 1);
+const leaf1 = Color.fromRGBO(218, 63, 27, 1);
+const leaf2 = Color.fromRGBO(255, 149, 57, 1);
+const leaf3 = Color.fromRGBO(252, 210, 3, 1);
 
 class App extends StatelessWidget {
   // This widget is the root of your application.
@@ -19,11 +22,18 @@ class App extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => Auth(),
       child: GraphQLProvider(
-        client: client,
+        client: ValueNotifier(client),
         child: CupertinoApp(
           title: 'north',
           theme: CupertinoThemeData().copyWith(
-            primaryColor: _leaf0,
+            primaryColor: leaf0,
+            textTheme: CupertinoTextThemeData().copyWith(
+              navTitleTextStyle:
+                  CupertinoTextThemeData().navTitleTextStyle.copyWith(
+                        color: leaf0,
+                        fontWeight: FontWeight.w200,
+                      ),
+            ),
           ),
           home: Consumer<Auth>(builder: (context, auth, _) {
             if (!auth.loggedIn()) {

@@ -34,9 +34,7 @@ class LandingPage extends StatelessWidget {
                         .navLargeTitleTextStyle,
                   ),
                   Text('a haiku app',
-                      style: CupertinoTheme.of(context)
-                          .textTheme
-                          .navTitleTextStyle),
+                      style: CupertinoTheme.of(context).textTheme.textStyle)
                 ],
               ),
             ),

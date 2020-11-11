@@ -8,77 +8,6 @@ import 'package:gql/ast.dart';
 part 'generated.graphql.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class HomePage$QueryRoot$Posts$Haikus with EquatableMixin {
-  HomePage$QueryRoot$Posts$Haikus();
-
-  factory HomePage$QueryRoot$Posts$Haikus.fromJson(Map<String, dynamic> json) =>
-      _$HomePage$QueryRoot$Posts$HaikusFromJson(json);
-
-  String line1;
-
-  String line2;
-
-  String line3;
-
-  int id;
-
-  @override
-  List<Object> get props => [line1, line2, line3, id];
-  Map<String, dynamic> toJson() =>
-      _$HomePage$QueryRoot$Posts$HaikusToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class HomePage$QueryRoot$Posts$Users with EquatableMixin {
-  HomePage$QueryRoot$Posts$Users();
-
-  factory HomePage$QueryRoot$Posts$Users.fromJson(Map<String, dynamic> json) =>
-      _$HomePage$QueryRoot$Posts$UsersFromJson(json);
-
-  String username;
-
-  int id;
-
-  @override
-  List<Object> get props => [username, id];
-  Map<String, dynamic> toJson() => _$HomePage$QueryRoot$Posts$UsersToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class HomePage$QueryRoot$Posts with EquatableMixin {
-  HomePage$QueryRoot$Posts();
-
-  factory HomePage$QueryRoot$Posts.fromJson(Map<String, dynamic> json) =>
-      _$HomePage$QueryRoot$PostsFromJson(json);
-
-  List<HomePage$QueryRoot$Posts$Haikus> haikus;
-
-  @JsonKey(name: 'created_at')
-  DateTime createdAt;
-
-  @JsonKey(name: 'created_by')
-  HomePage$QueryRoot$Posts$Users createdBy;
-
-  @override
-  List<Object> get props => [haikus, createdAt, createdBy];
-  Map<String, dynamic> toJson() => _$HomePage$QueryRoot$PostsToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class HomePage$QueryRoot with EquatableMixin {
-  HomePage$QueryRoot();
-
-  factory HomePage$QueryRoot.fromJson(Map<String, dynamic> json) =>
-      _$HomePage$QueryRootFromJson(json);
-
-  List<HomePage$QueryRoot$Posts> posts;
-
-  @override
-  List<Object> get props => [posts];
-  Map<String, dynamic> toJson() => _$HomePage$QueryRootToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
 class CreateAccount$MutationRoot$AuthOutput with EquatableMixin {
   CreateAccount$MutationRoot$AuthOutput();
 
@@ -140,95 +69,94 @@ class SignIn$MutationRoot with EquatableMixin {
   Map<String, dynamic> toJson() => _$SignIn$MutationRootToJson(this);
 }
 
-class HomePageQuery extends GraphQLQuery<HomePage$QueryRoot, JsonSerializable> {
-  HomePageQuery();
+@JsonSerializable(explicitToJson: true)
+class AuthedPages$QueryRoot$Feed$Haikus with EquatableMixin {
+  AuthedPages$QueryRoot$Feed$Haikus();
+
+  factory AuthedPages$QueryRoot$Feed$Haikus.fromJson(
+          Map<String, dynamic> json) =>
+      _$AuthedPages$QueryRoot$Feed$HaikusFromJson(json);
+
+  String line1;
+
+  String line2;
+
+  String line3;
+
+  int id;
 
   @override
-  final DocumentNode document = DocumentNode(definitions: [
-    OperationDefinitionNode(
-        type: OperationType.query,
-        name: NameNode(value: 'HomePage'),
-        variableDefinitions: [],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-              name: NameNode(value: 'posts'),
-              alias: null,
-              arguments: [
-                ArgumentNode(
-                    name: NameNode(value: 'limit'),
-                    value: IntValueNode(value: '10'))
-              ],
-              directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: 'haikus'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: SelectionSetNode(selections: [
-                      FieldNode(
-                          name: NameNode(value: 'line1'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null),
-                      FieldNode(
-                          name: NameNode(value: 'line2'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null),
-                      FieldNode(
-                          name: NameNode(value: 'line3'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null),
-                      FieldNode(
-                          name: NameNode(value: 'id'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null)
-                    ])),
-                FieldNode(
-                    name: NameNode(value: 'created_at'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'created_by'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: SelectionSetNode(selections: [
-                      FieldNode(
-                          name: NameNode(value: 'username'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null),
-                      FieldNode(
-                          name: NameNode(value: 'id'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null)
-                    ]))
-              ]))
-        ]))
-  ]);
+  List<Object> get props => [line1, line2, line3, id];
+  Map<String, dynamic> toJson() =>
+      _$AuthedPages$QueryRoot$Feed$HaikusToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AuthedPages$QueryRoot$Feed$Users with EquatableMixin {
+  AuthedPages$QueryRoot$Feed$Users();
+
+  factory AuthedPages$QueryRoot$Feed$Users.fromJson(
+          Map<String, dynamic> json) =>
+      _$AuthedPages$QueryRoot$Feed$UsersFromJson(json);
+
+  String username;
+
+  int id;
 
   @override
-  final String operationName = 'HomePage';
+  List<Object> get props => [username, id];
+  Map<String, dynamic> toJson() =>
+      _$AuthedPages$QueryRoot$Feed$UsersToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AuthedPages$QueryRoot$Feed with EquatableMixin {
+  AuthedPages$QueryRoot$Feed();
+
+  factory AuthedPages$QueryRoot$Feed.fromJson(Map<String, dynamic> json) =>
+      _$AuthedPages$QueryRoot$FeedFromJson(json);
+
+  List<AuthedPages$QueryRoot$Feed$Haikus> haikus;
+
+  @JsonKey(name: 'created_at')
+  DateTime createdAt;
+
+  @JsonKey(name: 'created_by')
+  AuthedPages$QueryRoot$Feed$Users createdBy;
 
   @override
-  List<Object> get props => [document, operationName];
+  List<Object> get props => [haikus, createdAt, createdBy];
+  Map<String, dynamic> toJson() => _$AuthedPages$QueryRoot$FeedToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AuthedPages$QueryRoot$Users with EquatableMixin {
+  AuthedPages$QueryRoot$Users();
+
+  factory AuthedPages$QueryRoot$Users.fromJson(Map<String, dynamic> json) =>
+      _$AuthedPages$QueryRoot$UsersFromJson(json);
+
+  String username;
+
   @override
-  HomePage$QueryRoot parse(Map<String, dynamic> json) =>
-      HomePage$QueryRoot.fromJson(json);
+  List<Object> get props => [username];
+  Map<String, dynamic> toJson() => _$AuthedPages$QueryRoot$UsersToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AuthedPages$QueryRoot with EquatableMixin {
+  AuthedPages$QueryRoot();
+
+  factory AuthedPages$QueryRoot.fromJson(Map<String, dynamic> json) =>
+      _$AuthedPages$QueryRootFromJson(json);
+
+  List<AuthedPages$QueryRoot$Feed> feed;
+
+  List<AuthedPages$QueryRoot$Users> me;
+
+  @override
+  List<Object> get props => [feed, me];
+  Map<String, dynamic> toJson() => _$AuthedPages$QueryRootToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -399,4 +327,109 @@ class SignInMutation
   @override
   SignIn$MutationRoot parse(Map<String, dynamic> json) =>
       SignIn$MutationRoot.fromJson(json);
+}
+
+class AuthedPagesQuery
+    extends GraphQLQuery<AuthedPages$QueryRoot, JsonSerializable> {
+  AuthedPagesQuery();
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.query,
+        name: NameNode(value: 'AuthedPages'),
+        variableDefinitions: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'posts'),
+              alias: NameNode(value: 'feed'),
+              arguments: [
+                ArgumentNode(
+                    name: NameNode(value: 'limit'),
+                    value: IntValueNode(value: '10'))
+              ],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                    name: NameNode(value: 'haikus'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                          name: NameNode(value: 'line1'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'line2'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'line3'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'id'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null)
+                    ])),
+                FieldNode(
+                    name: NameNode(value: 'created_at'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
+                FieldNode(
+                    name: NameNode(value: 'created_by'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                          name: NameNode(value: 'username'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'id'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null)
+                    ]))
+              ])),
+          FieldNode(
+              name: NameNode(value: 'me'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                    name: NameNode(value: 'username'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null)
+              ]))
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'AuthedPages';
+
+  @override
+  List<Object> get props => [document, operationName];
+  @override
+  AuthedPages$QueryRoot parse(Map<String, dynamic> json) =>
+      AuthedPages$QueryRoot.fromJson(json);
 }

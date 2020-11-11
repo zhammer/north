@@ -5,7 +5,11 @@ final storage = new FlutterSecureStorage();
 const _key = "north_access_token";
 
 Future<String> getTokenFromStorage() async {
-  return await storage.read(key: _key);
+  final token = storage.read(key: _key);
+  if (token == null) {
+    return "";
+  }
+  return token;
 }
 
 class Auth with ChangeNotifier {
