@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:graphql/client.dart';
+import 'package:north/graphql/client.dart';
+import 'package:north/graphql/generated.graphql.dart';
 
 class CreateAccountPage extends StatefulWidget {
   @override
@@ -11,7 +14,27 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   TextEditingController _confirmPasswordController =
       TextEditingController(text: '');
 
-  void _handleSubmitted() {}
+  void _handleSubmitted() async {
+    final mutation = CreateAccountMutation(
+      variables: CreateAccountArguments(
+        username: _usernameController.text,
+        password: _passwordController.text,
+      ),
+    );
+    final MutationOptions options = MutationOptions(
+      document: mutation.document,
+      variables: mutation.getVariablesMap(),
+    );
+    final result = await client.mutate(options);
+
+    if (result.hasException) {
+      debugPrint(result.exception.toString());
+      return;
+    }
+
+    final data = CreateAccount$MutationRoot.fromJson(result.data);
+    debugPrint(data.createAccount.accessToken);
+  }
 
   @override
   Widget build(BuildContext context) {

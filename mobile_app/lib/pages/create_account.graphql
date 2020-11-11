@@ -1,0 +1,5 @@
+mutation CreateAccount($password: String!, $username: String!) {
+  CreateAccount(inp: {password: $password, username: $username}) {
+    AccessToken
+  }
+}

@@ -1,0 +1,20 @@
+targets:
+  $default:
+    sources:
+      - lib/**
+      - schema.graphql
+    builders:
+      artemis:
+        options:
+          schema_mapping:
+            - schema: schema.graphql
+              queries_glob: lib/**/*.graphql
+              output: lib/graphql/generated.dart
+          custom_parser_import: 'package:north/graphql/coercers.dart'
+          scalar_mapping:
+            - graphql_type: timestamptz
+              dart_type: DateTime
+              use_custom_parser: True
+            - graphql_type: json
+              dart_type: Map
+              use_custom_parse: True
