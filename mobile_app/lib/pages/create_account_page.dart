@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:graphql/client.dart';
-import 'package:north/graphql/client.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:north/graphql/generated.graphql.dart';
-import 'package:provider/provider.dart';
 
 class CreateAccountPage extends StatefulWidget {
   @override
@@ -16,8 +15,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       TextEditingController(text: '');
 
   void _handleSubmitted(BuildContext context) async {
-    final client =
-        Provider.of<GraphQLClientNotifier>(context, listen: false).client;
+    final client = GraphQLProvider.of(context).value;
     final mutation = CreateAccountMutation(
       variables: CreateAccountArguments(
         username: _usernameController.text,

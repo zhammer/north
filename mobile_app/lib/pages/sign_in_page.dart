@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:graphql/client.dart';
-import 'package:north/graphql/client.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:north/graphql/generated.dart';
-import 'package:provider/provider.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -14,8 +12,7 @@ class _SignInPageState extends State<SignInPage> {
   TextEditingController _passwordController = TextEditingController(text: '');
 
   void _handleSubmitted(BuildContext context) async {
-    final client =
-        Provider.of<GraphQLClientNotifier>(context, listen: false).client;
+    final client = GraphQLProvider.of(context).value;
     final mutation = SignInMutation(
       variables: SignInArguments(
         password: _passwordController.text,
