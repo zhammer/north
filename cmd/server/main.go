@@ -123,13 +123,21 @@ func makeServer(cfg Config) (http.Handler, error) {
 
 		token := strings.TrimPrefix(authHeader, "Bearer ")
 		if token == "" {
-			http.Error(w, "invalid bearer token", http.StatusUnauthorized)
+			data := map[string]string{
+				"x-hasura-role": "unauthorized",
+			}
+			body, _ := json.Marshal(data)
+			w.Write(body)
 			return
 		}
 
 		claims, err := jwtClient.Parse(token)
 		if err != nil {
-			http.Error(w, err.Error(), http.StatusUnauthorized)
+			data := map[string]string{
+				"x-hasura-role": "unauthorized",
+			}
+			body, _ := json.Marshal(data)
+			w.Write(body)
 			return
 		}
 
