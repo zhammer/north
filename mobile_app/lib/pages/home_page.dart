@@ -16,9 +16,7 @@ class HomePage extends StatelessWidget {
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: data.feed.map((post) {
-            return Post(post: post);
-          }).toList(),
+          children: data.feed.map((post) => Post(post: post)).toList(),
         ),
       ),
     );
