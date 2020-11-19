@@ -1,0 +1,38 @@
+mutation AddPosts($posts: [posts_insert_input!]!) {
+  insert_posts(objects: $posts) {
+    affected_rows
+  }
+}
+
+{
+  "posts": [
+    {
+      "created_by_id": 1,
+      "description": "bike ride on the palisades the day biden win is projected",
+      "haikus": {
+        "data": [
+          {
+            "line1": "meditating",
+            "line2": "by the fishermen",
+            "line3":"waves float towards me"
+          },
+          {
+            "line1": "biden's just won",
+            "line2": "a family throws autumn leaves",
+            "line3": "in the air"
+          }
+        ]
+      }
+    },
+    {
+      "created_by_id": 1,
+			"haikus":{
+        "data": {
+          "line1": "between the williamsburg bridge pillars",
+          "line2": "in the east river",
+          "line3": "water flows the other way"
+        }
+      }
+    }
+  ]
+}

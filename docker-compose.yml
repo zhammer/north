@@ -14,7 +14,7 @@ services:
       POSTGRES_DB: north
 
   hasura:
-    image: hasura/graphql-engine:v1.3.2.cli-migrations-v2
+    image: hasura/graphql-engine:v1.3.3.cli-migrations-v2
     volumes:
       - ./metadata:/hasura-metadata
       - ./migrations:/hasura-migrations

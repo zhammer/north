@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:north/graphql/generated.graphql.dart';
+import 'package:north/widgets/post.dart';
 
 class HomePage extends StatelessWidget {
   final AuthedPages$QueryRoot data;
@@ -13,7 +14,12 @@ class HomePage extends StatelessWidget {
         middle: Text('north 北'),
       ),
       child: Center(
-        child: Text(data.toJson().toString()),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: data.feed.map((post) {
+            return Post(post: post);
+          }).toList(),
+        ),
       ),
     );
   }

@@ -35,6 +35,10 @@ class AuthedPages extends StatelessWidget {
                     return Text(result.exception.toString());
                   }
                   final data = AuthedPages$QueryRoot.fromJson(result.data);
+                  if (data.me.length != 1) {
+                    auth.clear();
+                    return Text('redirecting to landing page');
+                  }
 
                   switch (i) {
                     case 0:
