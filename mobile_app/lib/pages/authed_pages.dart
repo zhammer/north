@@ -32,7 +32,7 @@ class AuthedPages extends StatelessWidget {
                         "access-denied") {
                       auth.clear();
                     }
-                    return Text(result.exception.toString());
+                    return Center(child: Text(result.exception.toString()));
                   }
                   final data = AuthedPages$QueryRoot.fromJson(result.data);
                   if (data.me.length != 1) {
