@@ -25,7 +25,7 @@ class AuthedPages extends StatelessWidget {
                   {VoidCallback refetch, FetchMore fetchMore}) {
                 return Consumer<Auth>(builder: (context, auth, _) {
                   if (result.isLoading) {
-                    return Text('loading');
+                    return Center(child: Text('loading...'));
                   }
                   if (result.hasException) {
                     if (["access-denied", "validation-failed"].contains(
