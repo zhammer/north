@@ -28,8 +28,8 @@ class AuthedPages extends StatelessWidget {
                     return Text('loading');
                   }
                   if (result.hasException) {
-                    if (result.exception.graphqlErrors[0].extensions["code"] ==
-                        "access-denied") {
+                    if (["access-denied", "validation-failed"].contains(
+                        result.exception.graphqlErrors[0].extensions["code"])) {
                       auth.clear();
                     }
                     return Center(child: Text(result.exception.toString()));
