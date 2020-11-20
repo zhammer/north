@@ -13,9 +13,8 @@ class HomePage extends StatelessWidget {
       navigationBar: CupertinoNavigationBar(
         middle: Text('north 北'),
       ),
-      child: Center(
+      child: SafeArea(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           children: data.feed.map((post) => Post(post: post)).toList(),
         ),
       ),
