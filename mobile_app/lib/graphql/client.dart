@@ -16,7 +16,15 @@ class GraphQL extends StatelessWidget {
 
     return Consumer<Auth>(builder: (context, auth, _) {
       final authLink = AuthLink(getToken: () => auth.accessToken());
-      final link = authLink.concat(httpLink);
+      final errorLink = ErrorLink(onGraphQLError: (_, __, response) {
+        if (["access-denied", "validation-failed"]
+            .contains(response.errors[0].extensions["code"])) {
+          auth.clear();
+        }
+        return;
+      });
+
+      final link = errorLink.concat(authLink).concat(httpLink);
 
       final client = GraphQLClient(
         cache: cache,
