@@ -40,4 +40,8 @@ class Auth with ChangeNotifier {
   bool loggedIn() {
     return _accessToken != "";
   }
+
+  String accessToken() {
+    return _accessToken;
+  }
 }

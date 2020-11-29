@@ -4,7 +4,6 @@ import 'package:north/auth.dart';
 import 'package:north/graphql/client.dart';
 import 'package:north/pages/authed_pages.dart';
 import 'package:north/pages/landing_page.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -25,8 +24,7 @@ class App extends StatelessWidget {
 
     return ChangeNotifierProvider(
       create: (_) => Auth(),
-      child: GraphQLProvider(
-        client: ValueNotifier(client),
+      child: GraphQL(
         child: CupertinoApp(
           title: 'north',
           theme: CupertinoThemeData().copyWith(
