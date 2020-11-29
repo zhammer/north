@@ -37,12 +37,14 @@ class App extends StatelessWidget {
                       ),
             ),
           ),
-          home: Consumer<Auth>(builder: (context, auth, _) {
-            if (!auth.loggedIn()) {
-              return LandingPage();
-            }
-            return AuthedPages();
-          }),
+          home: Consumer<Auth>(
+            builder: (context, auth, _) {
+              if (!auth.loggedIn()) {
+                return LandingPage();
+              }
+              return AuthedPages();
+            },
+          ),
         ),
       ),
     );
