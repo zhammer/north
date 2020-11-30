@@ -1,5 +1,6 @@
 query HomePage {
   posts(limit: 10) {
+    description
     haikus {
       line1
       line2

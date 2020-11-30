@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:north/graphql/generated.graphql.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 // lots of ideas taken from:
 // https://medium.com/@nickwu241/creating-an-instagram-clone-with-flutter-4e81eab2ed69
@@ -27,6 +28,19 @@ class _PostState extends State<Post> {
     return Container(
       child: Column(
         children: [
+          Row(
+            children: [
+              Icon(CupertinoIcons.person_crop_circle_fill,
+                  color: CupertinoTheme.of(context).textTheme.textStyle.color),
+              Container(
+                margin: EdgeInsets.only(left: 5),
+                child: Text(
+                  widget.post.createdBy.username,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
+          ),
           Container(
             child: CarouselSlider(
               items: widget.post.haikus
@@ -50,11 +64,16 @@ class _PostState extends State<Post> {
             ],
           ),
           Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              '${widget.post.createdBy.username}',
-              textAlign: TextAlign.right,
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Column(
+              children: [
+                if (widget.post.description != null &&
+                    widget.post.description.isNotEmpty)
+                  Text(widget.post.description),
+                Text(
+                  timeago.format(widget.post.createdAt),
+                ),
+              ],
             ),
           )
         ],

@@ -41,6 +41,7 @@ Map<String, dynamic> _$HomePage$QueryRoot$Posts$UsersToJson(
 HomePage$QueryRoot$Posts _$HomePage$QueryRoot$PostsFromJson(
     Map<String, dynamic> json) {
   return HomePage$QueryRoot$Posts()
+    ..description = json['description'] as String
     ..haikus = (json['haikus'] as List)
         ?.map((e) => e == null
             ? null
@@ -59,6 +60,7 @@ HomePage$QueryRoot$Posts _$HomePage$QueryRoot$PostsFromJson(
 Map<String, dynamic> _$HomePage$QueryRoot$PostsToJson(
         HomePage$QueryRoot$Posts instance) =>
     <String, dynamic>{
+      'description': instance.description,
       'haikus': instance.haikus?.map((e) => e?.toJson())?.toList(),
       'created_at': instance.createdAt?.toIso8601String(),
       'created_by': instance.createdBy?.toJson(),

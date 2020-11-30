@@ -51,6 +51,8 @@ class HomePage$QueryRoot$Posts with EquatableMixin {
   factory HomePage$QueryRoot$Posts.fromJson(Map<String, dynamic> json) =>
       _$HomePage$QueryRoot$PostsFromJson(json);
 
+  String description;
+
   List<HomePage$QueryRoot$Posts$Haikus> haikus;
 
   @JsonKey(name: 'created_at')
@@ -60,7 +62,7 @@ class HomePage$QueryRoot$Posts with EquatableMixin {
   HomePage$QueryRoot$Posts$Users createdBy;
 
   @override
-  List<Object> get props => [haikus, createdAt, createdBy];
+  List<Object> get props => [description, haikus, createdAt, createdBy];
   Map<String, dynamic> toJson() => _$HomePage$QueryRoot$PostsToJson(this);
 }
 
@@ -189,6 +191,12 @@ class HomePageQuery extends GraphQLQuery<HomePage$QueryRoot, JsonSerializable> {
               ],
               directives: [],
               selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                    name: NameNode(value: 'description'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
                 FieldNode(
                     name: NameNode(value: 'haikus'),
                     alias: null,
