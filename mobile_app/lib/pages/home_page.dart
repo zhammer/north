@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:north/colors.dart';
 import 'package:north/graphql/generated.graphql.dart';
 import 'package:north/widgets/post.dart';
 
@@ -19,8 +21,29 @@ class HomePage extends StatelessWidget {
           }
           final data = HomePage$QueryRoot.fromJson(result.data);
           return SafeArea(
-            child: Column(
-              children: data.posts.map((post) => Post(post: post)).toList(),
+            child: ListView.separated(
+              itemBuilder: (context, i) {
+                final post = data.posts[i];
+                return Post(post: post);
+              },
+              separatorBuilder: (context, i) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List<Widget>.generate(
+                    3,
+                    (i) => Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                      child: SvgPicture.asset(
+                        'assets/wave.svg',
+                        height: 40,
+                        color: leaf2,
+                      ),
+                    ),
+                  ),
+                );
+              },
+              itemCount: (data.posts.length),
             ),
           );
         },

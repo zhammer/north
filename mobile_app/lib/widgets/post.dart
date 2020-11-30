@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:north/colors.dart';
 import 'package:north/graphql/generated.graphql.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Post extends StatefulWidget {
   // todo: see if we can use a shared 'post' data fragment: https://github.com/comigor/artemis/issues/137#issuecomment-630383853
@@ -22,15 +24,11 @@ class _PostState extends State<Post> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
       child: Column(
         children: [
           // https://pub.dev/packages/carousel_slider for insta type thing?
           // https://medium.com/@nickwu241/creating-an-instagram-clone-with-flutter-4e81eab2ed69
           Container(
-            decoration: BoxDecoration(
-              border: Border.all(style: BorderStyle.solid),
-            ),
             child: CarouselSlider(
               items: widget.post.haikus
                   .map((haiku) => Haiku(haiku: haiku))
