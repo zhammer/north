@@ -37,7 +37,6 @@ class _PostState extends State<Post> {
                 viewportFraction: 1.0,
                 enableInfiniteScroll: false,
                 onPageChanged: _onCarouselPageChanged,
-                height: 150,
               ),
             ),
           ),
@@ -51,6 +50,14 @@ class _PostState extends State<Post> {
                 )
             ],
           ),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              '${widget.post.createdBy.username}',
+              textAlign: TextAlign.right,
+            ),
+          )
         ],
       ),
     );
